@@ -15,6 +15,7 @@ populateForm();
 
 function onFormSubmit(evt) {
   evt.preventDefault();
+  console.log(formData);
   evt.currentTarget.reset();
   localStorage.removeItem(LOCALSTORAGE_KEY);
 }
@@ -25,10 +26,10 @@ function onFormInput(evt) {
 }
 
 function populateForm() {
-  const savedInputEl = localStorage.getItem(LOCALSTORAGE_KEY);
+  const savedInputEl = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
 
   if (savedInputEl) {
-    // refs.input.value = savedInputEl;
-    refs.textarea.value = savedInputEl;
+    refs.input.value = savedInputEl.email || '';
+    refs.textarea.value = savedInputEl.message || '';
   }
 }
