@@ -31,5 +31,7 @@ function populateForm() {
   if (savedInputEl) {
     refs.input.value = savedInputEl.email || '';
     refs.textarea.value = savedInputEl.message || '';
+    formData.email = savedInputEl.email || '';
+    formData.message = savedInputEl.message || '';
   }
 }

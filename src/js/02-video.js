@@ -3,19 +3,15 @@ import throttle from 'lodash.throttle';
 
 const STORAGE_KEY = 'videoplayer-current-time';
 const iframe = document.querySelector('iframe');
-const iframePlayer = new Player(iframe);
+const Player = new player(iframe);
 
 function currentTime(data) {
-  localStorage.getItem(STORAGE_KEY, data.seconds);
+  localStorage.setItem(STORAGE_KEY, data.seconds);
 }
 
 function getDataLS() {
-  const dataFromLS = localStorage.getItem(STORAGE_KEY);
-
-  if (dataFromLS) {
-    return dataFromLS;
-  }
-  return 0;
+  return localStorage.getItem(STORAGE_KEY) || 0;
 }
-iframePlayer.setCurrentTarget(getDataLS());
-iframePlayer.on('timeupdate', throttle(currentTime, 1000));
+
+Player.setCurrentTime(getDataLS());
+Player.on('timeupdate', throttle(currentTime, 1000));
