@@ -16,6 +16,8 @@ populateForm();
 function onFormSubmit(evt) {
   evt.preventDefault();
   console.log(formData);
+  formData.email = '';
+  formData.message = '';
   evt.currentTarget.reset();
   localStorage.removeItem(LOCALSTORAGE_KEY);
 }
